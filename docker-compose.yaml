@@ -4,10 +4,18 @@ networks:
     name: roboshop
     external: true
 
+volumes:
+  mongodb:
+  redis:
+  mysql:
+  rabbitmq:
+
 services:
   mongodb:
     image: anilattada/mongodb:v1
     container_name: mongodb
+    volumes:   # we are mounting the volume
+      mongodb:/data/db  #location to where store data in mongodb from documentation
   catalogue:
     image: anilattada/catalogue:v1
     container_name: catalogue
