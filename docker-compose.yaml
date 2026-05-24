@@ -11,6 +11,9 @@ services:
   catalogue:
     image: anilattada/catalogue:v1
     container_name: catalogue
+    environment:
+      MONGO: true 
+      MONGO_URL: mongodb://mongodb:27017/catalogue
     depends_on:
       - mongodb
   redis:
@@ -25,6 +28,10 @@ services:
   cart:
     image: anilattada/cart:v1
     container_name: cart
+    environment:
+        REDIS_HOST: redis 
+        CATALOGUE_HOST: catalogue 
+        CATALOGUE_PORT: 8080
     depends_on:
       - redis
       - catalogue
